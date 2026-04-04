@@ -5821,6 +5821,7 @@ function AssessmentTestPage() {
     const [partnerStyle, setPartnerStyle] = useState(null);
     const [isLoading2, setIsLoading] = useState(false);
     const current = questions[index] ?? null;
+    const dimensionLabel = !current ? "" : current.styleDim === "A" ? "Anxiety" : current.styleDim === "V" ? "Avoidance" : current.styleDim === "F" ? "Anxiety × Avoidance" : "Security";
     const total = questions.length;
     const answeredCount = answers.filter((a) => a.value !== null).length;
     const progress = total > 0 ? Math.round(answeredCount / total * 100) : 0;
@@ -5980,7 +5981,7 @@ function AssessmentTestPage() {
           /* @__PURE__ */ jsx("div", { className: testStyles.questionMeta, children: /* @__PURE__ */ jsxs("span", { className: testStyles.pill, children: [
             i18nStr("assessments.test.common.ui.dimensionLabel", "Dimension:"),
             " ",
-            current.dimension
+            dimensionLabel
           ] }) }),
           /* @__PURE__ */ jsx("div", { className: testStyles.questionText, children: current.prompt }),
           /* @__PURE__ */ jsx(

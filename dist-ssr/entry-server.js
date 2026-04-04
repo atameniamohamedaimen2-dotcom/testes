@@ -7,7 +7,7 @@ import { useState, useEffect, useMemo } from "react";
 import { a as assessments, T as TestPage } from "./assets/iq-test-page-BIOHOohz.js";
 import { u as useI18n, H as HomePage, I as I18nProvider } from "./assets/home-Hplm1lpP.js";
 import { A as AssessmentInfoPage } from "./assets/assessment-info-Cp84TyZc.js";
-import { A as AssessmentTestPageRoute } from "./assets/assessment-test-D3-DGRXu.js";
+import { A as AssessmentTestPageRoute } from "./assets/assessment-test-CZO14wb6.js";
 import { A as AssessmentsPage } from "./assets/assessments-index-B2CJWE8z.js";
 import "react-fast-compare";
 import "invariant";
@@ -151,13 +151,24 @@ function App() {
     /* @__PURE__ */ jsx(Route, { path: "*", element: /* @__PURE__ */ jsx(Navigate, { to: "/", replace: true }) })
   ] }) });
 }
+function normalizeViteBase(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw || raw === "/") return "/";
+  if (/^https?:\/\//i.test(raw)) return raw.endsWith("/") ? raw : `${raw}/`;
+  if (raw.startsWith("./") || raw.startsWith("../")) return raw.endsWith("/") ? raw : `${raw}/`;
+  const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
 function render(url) {
   var _a, _b, _c, _d, _e, _f, _g, _h, _i;
-  const env = ((_a = globalThis.process) == null ? void 0 : _a.env) ?? {};
-  globalThis.__SITE_URL__ = String(env.SITE_URL ?? env.VITE_SITE_URL ?? env.PUBLIC_SITE_URL ?? "");
+  const g = globalThis;
+  const env = ((_a = g.process) == null ? void 0 : _a.env) ?? {};
+  g.__SITE_URL__ = String(env.SITE_URL ?? env.VITE_SITE_URL ?? env.PUBLIC_SITE_URL ?? "");
+  const base = normalizeViteBase(String(env.VITE_BASE_PATH ?? ""));
+  const basename = base.startsWith(".") || base === "/" ? void 0 : base.replace(/\/+$/, "");
   const helmetContext = {};
   const appHtml = renderToString(
-    /* @__PURE__ */ jsx(HelmetProvider, { context: helmetContext, children: /* @__PURE__ */ jsx(I18nProvider, { initialLocale: "en", children: /* @__PURE__ */ jsx(StaticRouter, { location: url, children: /* @__PURE__ */ jsx(App, {}) }) }) })
+    /* @__PURE__ */ jsx(HelmetProvider, { context: helmetContext, children: /* @__PURE__ */ jsx(I18nProvider, { initialLocale: "en", children: /* @__PURE__ */ jsx(StaticRouter, { location: url, basename, children: /* @__PURE__ */ jsx(App, {}) }) }) })
   );
   const helmet = helmetContext.helmet;
   const head = [
