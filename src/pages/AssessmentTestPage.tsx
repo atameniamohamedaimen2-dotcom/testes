@@ -8004,6 +8004,16 @@ export default function AssessmentTestPage() {
     const [isLoading, setIsLoading] = useState(false);
 
     const current = questions[index] ?? null;
+    const dimensionLabel =
+      !current
+        ? ""
+        : current.styleDim === "A"
+          ? "Anxiety"
+          : current.styleDim === "V"
+            ? "Avoidance"
+            : current.styleDim === "F"
+              ? "Anxiety × Avoidance"
+              : "Security";
     const total = questions.length;
     const answeredCount = answers.filter((a) => a.value !== null).length;
     const progress = total > 0 ? Math.round((answeredCount / total) * 100) : 0;
@@ -8257,7 +8267,7 @@ export default function AssessmentTestPage() {
 
               <div className={testStyles.questionMeta}>
                 <span className={testStyles.pill}>
-                  {i18nStr("assessments.test.common.ui.dimensionLabel", "Dimension:")} {current.dimension}
+                  {i18nStr("assessments.test.common.ui.dimensionLabel", "Dimension:")} {dimensionLabel}
                 </span>
               </div>
 

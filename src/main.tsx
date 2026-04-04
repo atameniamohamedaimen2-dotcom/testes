@@ -15,7 +15,13 @@ const app = (
   <React.StrictMode>
     <HelmetProvider>
       <I18nProvider>
-        <BrowserRouter>
+        <BrowserRouter
+          basename={
+            import.meta.env.BASE_URL.startsWith(".") || import.meta.env.BASE_URL === "/"
+              ? undefined
+              : import.meta.env.BASE_URL.replace(/\/+$/, "")
+          }
+        >
           <AppClient />
         </BrowserRouter>
       </I18nProvider>

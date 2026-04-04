@@ -5,15 +5,32 @@ import { HelmetProvider } from "react-helmet-async";
 import App from "./App";
 import { I18nProvider } from "./i18n";
 
+function normalizeViteBase(value: string) {
+  const raw = String(value ?? "").trim();
+  if (!raw || raw === "/") return "/";
+  if (/^https?:\/\//i.test(raw)) return raw.endsWith("/") ? raw : `${raw}/`;
+
+  if (raw.startsWith("./") || raw.startsWith("../")) return raw.endsWith("/") ? raw : `${raw}/`;
+
+  const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
 export function render(url: string) {
-  const env = ((globalThis as any).process?.env ?? {}) as Record<string, unknown>;
-  (globalThis as any).__SITE_URL__ = String(env.SITE_URL ?? env.VITE_SITE_URL ?? env.PUBLIC_SITE_URL ?? "");
+  const g = globalThis as typeof globalThis & {
+    process?: { env?: Record<string, string | undefined> };
+    __SITE_URL__?: string;
+  };
+  const env = g.process?.env ?? {};
+  g.__SITE_URL__ = String(env.SITE_URL ?? env.VITE_SITE_URL ?? env.PUBLIC_SITE_URL ?? "");
+  const base = normalizeViteBase(String(env.VITE_BASE_PATH ?? ""));
+  const basename = base.startsWith(".") || base === "/" ? undefined : base.replace(/\/+$/, "");
 
   const helmetContext: Record<string, unknown> = {};
   const appHtml = renderToString(
     <HelmetProvider context={helmetContext}>
       <I18nProvider initialLocale="en">
-        <StaticRouter location={url}>
+        <StaticRouter location={url} basename={basename}>
           <App />
         </StaticRouter>
       </I18nProvider>

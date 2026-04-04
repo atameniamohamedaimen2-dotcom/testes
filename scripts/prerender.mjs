@@ -17,6 +17,21 @@ function getSiteUrl() {
   );
 }
 
+function normalizeViteBase(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw || raw === "/") return "/";
+  if (/^https?:\/\//i.test(raw)) return raw.endsWith("/") ? raw : `${raw}/`;
+  if (raw.startsWith("./") || raw.startsWith("../")) return raw.endsWith("/") ? raw : `${raw}/`;
+  const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
+function getBasePrefix() {
+  const base = normalizeViteBase(process.env.VITE_BASE_PATH || "");
+  if (base.startsWith(".") || base === "/") return "";
+  return base.replace(/\/+$/, "");
+}
+
 function getAssessmentIds(projectRoot) {
   const registryPath = path.join(projectRoot, "src", "assessments", "registry.ts");
   const text = fs.readFileSync(registryPath, "utf8");
@@ -74,9 +89,10 @@ async function main() {
   const routes = ["/", "/test", "/assessments", ...ids.map((id) => `/assessments/${id}`), ...ids.map((id) => `/assessments/${id}/test`)];
 
   process.env.VITE_SITE_URL = getSiteUrl();
+  const basePrefix = getBasePrefix();
 
   for (const routePath of routes) {
-    const { appHtml, head } = await render(routePath);
+    const { appHtml, head } = await render(`${basePrefix}${routePath}`);
     const outFile = routeToOutFile(distDir, routePath);
     ensureDirForFile(outFile);
 
