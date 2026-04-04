@@ -2,6 +2,7 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter } from "react-router-dom";
 import { HelmetProvider } from "react-helmet-async";
+import { Analytics } from "@vercel/analytics/react";
 import AppClient from "./AppClient";
 import { I18nProvider } from "./i18n";
 import "./styles/global.css";
@@ -23,6 +24,7 @@ const app = (
           }
         >
           <AppClient />
+          <Analytics />
         </BrowserRouter>
       </I18nProvider>
     </HelmetProvider>
