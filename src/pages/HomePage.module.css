@@ -1,0 +1,210 @@
+.hero {
+  text-align: center;
+}
+
+.title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  background: var(--primary-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 0 0 10px 0;
+}
+
+.subtitle {
+  margin: 0 auto 22px auto;
+  max-width: 860px;
+  color: var(--muted);
+  font-size: 1.1rem;
+  padding: 0 10px;
+}
+
+.badges {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 12px 0 26px 0;
+}
+
+.badge {
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  padding: 8px 12px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.cta {
+  margin: 0 auto 30px auto;
+  padding: 28px;
+  max-width: 780px;
+  background: var(--glass);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.ctaTitle {
+  margin: 0 0 8px 0;
+}
+
+.ctaText {
+  margin: 0 0 16px 0;
+  color: var(--muted);
+}
+
+.ctaButton {
+  display: inline-block;
+  padding: 14px 22px;
+  border-radius: 12px;
+  background: var(--primary-gradient);
+  color: white;
+  text-decoration: none;
+  font-weight: 800;
+}
+
+.ctaButton:hover {
+  transform: translateY(-1px);
+}
+
+.section {
+  margin: 40px auto;
+  padding: 28px;
+  background: var(--glass);
+  border-radius: var(--radius);
+  border: 1px solid var(--glass-border);
+}
+
+.sectionTitle {
+  margin: 0 0 18px 0;
+  text-align: center;
+}
+
+.snippet {
+  max-width: 860px;
+  margin: 0 auto 18px auto;
+  background: rgba(59, 130, 246, 0.12);
+  border: 1px solid rgba(59, 130, 246, 0.25);
+  border-radius: 14px;
+  padding: 14px 16px;
+  color: var(--text);
+  text-align: center;
+  font-weight: 600;
+}
+
+.cards {
+  display: grid;
+  gap: 14px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.cardTitle {
+  font-weight: 900;
+  margin-bottom: 8px;
+}
+
+.cardText {
+  color: var(--muted);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.methodCard {
+  background: var(--card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.methodIcon {
+  font-size: 1.8rem;
+}
+
+.methodTitle {
+  font-weight: 900;
+  margin-top: 10px;
+  margin-bottom: 8px;
+}
+
+.methodDesc {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.methodBenefits {
+  margin-top: 12px;
+  font-size: 0.9rem;
+}
+
+.linkCard {
+  display: block;
+  text-decoration: none;
+}
+
+.linkCard:hover {
+  transform: translateY(-1px);
+}
+
+.listCard {
+  background: var(--card);
+  border: 1px solid var(--glass-border);
+  border-radius: 14px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+}
+
+.list {
+  margin: 0;
+  padding-left: 18px;
+  color: var(--muted);
+}
+
+.secondaryButton {
+  display: inline-block;
+  margin-top: 14px;
+  text-decoration: none;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .cards {
+    grid-template-columns: 1fr;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .title {
+    font-size: 2rem;
+  }
+
+  .section {
+    padding: 20px;
+  }
+}

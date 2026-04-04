@@ -1,0 +1,490 @@
+const eqQuestionPool = [
+  // === SELF-AWARENESS (SA) - Recognizing one's own emotions, strengths, limits ===
+  {
+    q: "I am aware of my emotions as I experience them.",
+    dimension: "SA",
+    facet: "Emotional Awareness",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I understand why I feel the way I feel.",
+    dimension: "SA",
+    facet: "Emotional Clarity",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I recognize how my emotions affect my thoughts and decisions.",
+    dimension: "SA",
+    facet: "Impact Awareness",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am aware of my strengths and weaknesses without being defensive.",
+    dimension: "SA",
+    facet: "Self-Accuracy",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I notice physical signs of stress or emotion in my body.",
+    dimension: "SA",
+    facet: "Somatic Awareness",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can name my emotions with precision (e.g., frustrated vs. angry).",
+    dimension: "SA",
+    facet: "Emotional Vocabulary",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I understand how my past experiences shape my emotional reactions.",
+    dimension: "SA",
+    facet: "Psychological Insight",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can accurately describe my emotional state to others.",
+    dimension: "SA",
+    facet: "Emotional Expression",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  // === SELF-REGULATION (SR) - Managing one's own emotions, impulses, adaptability ===
+  {
+    q: "I can calm myself down when I feel upset or angry.",
+    dimension: "SR",
+    facet: "Emotional Control",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I think before I speak, especially when emotional.",
+    dimension: "SR",
+    facet: "Impulse Control",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I adapt well to changes and unexpected situations.",
+    dimension: "SR",
+    facet: "Adaptability",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can resist temptation and delay gratification.",
+    dimension: "SR",
+    facet: "Self-Discipline",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I take responsibility for my mistakes rather than blaming others.",
+    dimension: "SR",
+    facet: "Accountability",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I remain calm and composed under pressure.",
+    dimension: "SR",
+    facet: "Stress Tolerance",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can bounce back quickly from setbacks or disappointments.",
+    dimension: "SR",
+    facet: "Resilience",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I control my negative thoughts and avoid spiraling into pessimism.",
+    dimension: "SR",
+    facet: "Cognitive Reappraisal",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  // === MOTIVATION (MO) - Internal drive, optimism, commitment, initiative ===
+  {
+    q: "I set personal goals and work consistently toward them.",
+    dimension: "MO",
+    facet: "Achievement Drive",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I take initiative without waiting for others to tell me what to do.",
+    dimension: "MO",
+    facet: "Initiative",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I remain optimistic even when things don't go my way.",
+    dimension: "MO",
+    facet: "Optimism",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am committed to my work and follow through on promises.",
+    dimension: "MO",
+    facet: "Commitment",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I seek challenges because they help me grow.",
+    dimension: "MO",
+    facet: "Learning Orientation",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I persist in the face of obstacles and don't give up easily.",
+    dimension: "MO",
+    facet: "Persistence",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I find meaning and purpose in what I do, even during difficult times.",
+    dimension: "MO",
+    facet: "Purpose",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am motivated by internal satisfaction more than external rewards.",
+    dimension: "MO",
+    facet: "Intrinsic Motivation",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  // === EMPATHY (EM) - Understanding others' feelings, perspective-taking ===
+  {
+    q: "I can tell when someone is feeling upset even if they don't say it.",
+    dimension: "EM",
+    facet: "Emotional Perception",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I listen to others without interrupting or judging.",
+    dimension: "EM",
+    facet: "Active Listening",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can see things from another person's perspective, even if I disagree.",
+    dimension: "EM",
+    facet: "Perspective Taking",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I feel genuine concern when others are suffering.",
+    dimension: "EM",
+    facet: "Compassion",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am sensitive to nonverbal cues (tone, body language, facial expression).",
+    dimension: "EM",
+    facet: "Nonverbal Sensitivity",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can understand why someone might react differently than I would.",
+    dimension: "EM",
+    facet: "Cognitive Empathy",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I ask questions to better understand how others feel.",
+    dimension: "EM",
+    facet: "Curiosity about Others",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am tolerant of people with different backgrounds or beliefs.",
+    dimension: "EM",
+    facet: "Open-mindedness",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  // === SOCIAL SKILLS (SS) - Relationship management, communication, influence ===
+  {
+    q: "I communicate clearly and assertively without being aggressive.",
+    dimension: "SS",
+    facet: "Assertive Communication",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I resolve conflicts constructively and find win-win solutions.",
+    dimension: "SS",
+    facet: "Conflict Resolution",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I build and maintain positive relationships easily.",
+    dimension: "SS",
+    facet: "Relationship Building",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I can influence others without manipulating or forcing.",
+    dimension: "SS",
+    facet: "Influence",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I work well in teams and contribute to group harmony.",
+    dimension: "SS",
+    facet: "Collaboration",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I give and receive feedback effectively without defensiveness.",
+    dimension: "SS",
+    facet: "Feedback Skills",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I lead or inspire others when opportunities arise.",
+    dimension: "SS",
+    facet: "Leadership",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  },
+  {
+    q: "I am comfortable initiating conversations with strangers.",
+    dimension: "SS",
+    facet: "Social Initiation",
+    options: [
+      { text: "Never", score: 1 },
+      { text: "Rarely", score: 2 },
+      { text: "Sometimes", score: 3 },
+      { text: "Often", score: 4 },
+      { text: "Always", score: 5 }
+    ]
+  }
+];
+export {
+  eqQuestionPool as e
+};
