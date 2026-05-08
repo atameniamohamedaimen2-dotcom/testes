@@ -14,7 +14,7 @@ function normalizeViteBase(value: string) {
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, "", "");
-  const base = normalizeViteBase(env.VITE_BASE_PATH || "testes");
+  const base = normalizeViteBase(env.VITE_BASE_PATH || "/");
 
   return {
     base,

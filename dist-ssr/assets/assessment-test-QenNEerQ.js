@@ -2,9 +2,9 @@ import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { useParams, Navigate, Link } from "react-router-dom";
 import { useState, useMemo } from "react";
 import { H as Helmet } from "./vendor-BMz5C6pv.js";
-import { g as getAssessmentById, t as testStyles, l as loadQuestionBank } from "./iq-test-page-BIOHOohz.js";
-import { s as styles } from "./assessment-info-Cp84TyZc.js";
-import { u as useI18n } from "./home-Hplm1lpP.js";
+import { g as getAssessmentById, t as testStyles, l as loadQuestionBank } from "./iq-test-page-BlpRRthJ.js";
+import { s as styles } from "./assessment-info-KTtZO9--.js";
+import { u as useI18n } from "./home-CRIP7go1.js";
 function shuffle(items) {
   const arr = [...items];
   for (let i = arr.length - 1; i > 0; i -= 1) {

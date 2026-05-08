@@ -5462,32 +5462,32 @@ function useI18n() {
   if (!ctx) throw new Error("useI18n must be used within I18nProvider");
   return ctx;
 }
-const hero = "_hero_1vo6j_1";
-const title = "_title_1vo6j_5";
-const subtitle = "_subtitle_1vo6j_15";
-const badges = "_badges_1vo6j_23";
-const badge = "_badge_1vo6j_23";
-const cta = "_cta_1vo6j_40";
-const ctaTitle = "_ctaTitle_1vo6j_50";
-const ctaText = "_ctaText_1vo6j_54";
-const ctaButton = "_ctaButton_1vo6j_59";
-const section = "_section_1vo6j_73";
-const sectionTitle = "_sectionTitle_1vo6j_81";
-const snippet = "_snippet_1vo6j_86";
-const cards = "_cards_1vo6j_98";
-const card = "_card_1vo6j_98";
-const cardTitle = "_cardTitle_1vo6j_112";
-const cardText = "_cardText_1vo6j_117";
-const grid = "_grid_1vo6j_121";
-const methodCard = "_methodCard_1vo6j_127";
-const methodIcon = "_methodIcon_1vo6j_135";
-const methodTitle = "_methodTitle_1vo6j_139";
-const methodDesc = "_methodDesc_1vo6j_145";
-const methodBenefits = "_methodBenefits_1vo6j_150";
-const linkCard = "_linkCard_1vo6j_155";
-const listCard = "_listCard_1vo6j_164";
-const list = "_list_1vo6j_164";
-const secondaryButton = "_secondaryButton_1vo6j_178";
+const hero = "_hero_1x2t4_1";
+const title = "_title_1x2t4_9";
+const subtitle = "_subtitle_1x2t4_29";
+const badges = "_badges_1x2t4_45";
+const badge = "_badge_1x2t4_45";
+const cta = "_cta_1x2t4_79";
+const ctaTitle = "_ctaTitle_1x2t4_99";
+const ctaText = "_ctaText_1x2t4_107";
+const ctaButton = "_ctaButton_1x2t4_117";
+const section = "_section_1x2t4_145";
+const sectionTitle = "_sectionTitle_1x2t4_161";
+const snippet = "_snippet_1x2t4_171";
+const cards = "_cards_1x2t4_195";
+const card = "_card_1x2t4_195";
+const cardTitle = "_cardTitle_1x2t4_223";
+const cardText = "_cardText_1x2t4_233";
+const grid = "_grid_1x2t4_241";
+const methodCard = "_methodCard_1x2t4_253";
+const methodIcon = "_methodIcon_1x2t4_269";
+const methodTitle = "_methodTitle_1x2t4_277";
+const methodDesc = "_methodDesc_1x2t4_289";
+const methodBenefits = "_methodBenefits_1x2t4_299";
+const linkCard = "_linkCard_1x2t4_309";
+const listCard = "_listCard_1x2t4_327";
+const list = "_list_1x2t4_327";
+const secondaryButton = "_secondaryButton_1x2t4_355";
 const homeStyles = {
   hero,
   title,
@@ -5523,7 +5523,8 @@ function HomePage() {
   const description = t("routes.home.helmet.description");
   const configuredSiteUrl = "https://personacheck.pro".trim().replace(/\/+$/, "");
   const origin = configuredSiteUrl !== "" ? configuredSiteUrl : typeof window !== "undefined" ? window.location.origin : "";
-  const canonical = origin ? `${origin}/` : "/";
+  const basePrefix = "";
+  const canonical = origin ? `${origin}${basePrefix}/` : "/";
   const methods = get("routes.home.ui.methods") ?? [];
   const badges2 = get("routes.home.ui.badges") ?? [];
   const cards2 = get("routes.home.ui.improveCards") ?? [];

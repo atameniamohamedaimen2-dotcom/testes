@@ -30,7 +30,7 @@ export default function AssessmentsPage() {
           <h2 className={styles.sectionTitle}>{t("routes.assessments.ui.chooseTitle")}</h2>
           <div className={styles.grid}>
             {assessments.map((a) => (
-              <Link key={a.id} to={`/assessments/${a.id}`} className={styles.gridCard}>
+              <Link key={a.id} to={a.id === "iq" ? "/" : `/assessments/${a.id}`} className={styles.gridCard}>
                 <div className={styles.gridTitle}>
                   <span aria-hidden="true">{a.emoji}</span> {a.name}
                 </div>

@@ -4,28 +4,28 @@ import { StaticRouter } from "react-router-dom/server.mjs";
 import { H as Helmet, a as HelmetProvider } from "./assets/vendor-BMz5C6pv.js";
 import { useLocation, Link, Outlet, Routes, Route, Navigate } from "react-router-dom";
 import { useState, useEffect, useMemo } from "react";
-import { a as assessments, T as TestPage } from "./assets/iq-test-page-BIOHOohz.js";
-import { u as useI18n, H as HomePage, I as I18nProvider } from "./assets/home-Hplm1lpP.js";
-import { A as AssessmentInfoPage } from "./assets/assessment-info-Cp84TyZc.js";
-import { A as AssessmentTestPageRoute } from "./assets/assessment-test-CZO14wb6.js";
-import { A as AssessmentsPage } from "./assets/assessments-index-B2CJWE8z.js";
+import { a as assessments, T as TestPage } from "./assets/iq-test-page-BlpRRthJ.js";
+import { u as useI18n, H as HomePage, I as I18nProvider } from "./assets/home-CRIP7go1.js";
+import { A as AssessmentInfoPage } from "./assets/assessment-info-KTtZO9--.js";
+import { A as AssessmentTestPageRoute } from "./assets/assessment-test-QenNEerQ.js";
+import { A as AssessmentsPage } from "./assets/assessments-index-DcgmBY55.js";
 import "react-fast-compare";
 import "invariant";
 import "shallowequal";
-const skipLink = "_skipLink_tktgv_32";
-const container = "_container_tktgv_48";
-const header = "_header_tktgv_55";
-const topRow = "_topRow_tktgv_65";
-const logo = "_logo_tktgv_73";
-const logoIcon = "_logoIcon_tktgv_83";
-const logoAccent = "_logoAccent_tktgv_87";
-const nav = "_nav_tktgv_91";
-const navBtn = "_navBtn_tktgv_99";
-const themeBtn = "_themeBtn_tktgv_119";
-const main = "_main_tktgv_129";
-const footer = "_footer_tktgv_133";
-const footerInner = "_footerInner_tktgv_141";
-const footerNote = "_footerNote_tktgv_146";
+const skipLink = "_skipLink_1l38l_63";
+const container = "_container_1l38l_95";
+const header = "_header_1l38l_109";
+const topRow = "_topRow_1l38l_129";
+const logo = "_logo_1l38l_145";
+const logoIcon = "_logoIcon_1l38l_165";
+const logoAccent = "_logoAccent_1l38l_173";
+const nav = "_nav_1l38l_181";
+const navBtn = "_navBtn_1l38l_197";
+const themeBtn = "_themeBtn_1l38l_237";
+const main = "_main_1l38l_257";
+const footer = "_footer_1l38l_265";
+const footerInner = "_footerInner_1l38l_281";
+const footerNote = "_footerNote_1l38l_291";
 const styles = {
   skipLink,
   container,
@@ -63,14 +63,16 @@ function Layout() {
     } catch {
     }
   }, [theme]);
-  const { canonicalHref, origin } = useMemo(() => {
-    const path = location.pathname === "/" ? "" : location.pathname;
+  const { canonicalHref, origin, basePrefix } = useMemo(() => {
+    const path = location.pathname === "/" ? "/" : location.pathname;
     const configuredSiteUrl = "https://personacheck.pro".trim().replace(/\/+$/, "");
     const computedOrigin = configuredSiteUrl !== "" ? configuredSiteUrl : typeof window !== "undefined" ? window.location.origin : "";
-    if (!computedOrigin) return { canonicalHref: null, origin: "" };
-    return { canonicalHref: `${computedOrigin}${path}`, origin: computedOrigin };
+    const baseUrl = "/";
+    const computedBasePrefix = baseUrl.startsWith(".") || baseUrl === "/" ? "" : baseUrl.replace(/\/+$/, "");
+    if (!computedOrigin) return { canonicalHref: null, origin: "", basePrefix: "" };
+    return { canonicalHref: `${computedOrigin}${computedBasePrefix}${path}`, origin: computedOrigin, basePrefix: computedBasePrefix };
   }, [location.pathname]);
-  const ogImage = origin ? `${origin}/og-image.svg` : "/og-image.svg";
+  const ogImage = origin ? `${origin}${basePrefix}/og-image.svg` : "/og-image.svg";
   return /* @__PURE__ */ jsxs(Fragment, { children: [
     /* @__PURE__ */ jsxs(Helmet, { children: [
       canonicalHref ? /* @__PURE__ */ jsx("link", { rel: "canonical", href: canonicalHref }) : null,

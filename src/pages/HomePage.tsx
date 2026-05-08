@@ -16,7 +16,9 @@ export default function HomePage() {
     .trim()
     .replace(/\/+$/, "");
   const origin = configuredSiteUrl !== "" ? configuredSiteUrl : typeof window !== "undefined" ? window.location.origin : "";
-  const canonical = origin ? `${origin}/` : "/";
+  const baseUrl = import.meta.env.BASE_URL;
+  const basePrefix = baseUrl.startsWith(".") || baseUrl === "/" ? "" : baseUrl.replace(/\/+$/, "");
+  const canonical = origin ? `${origin}${basePrefix}/` : "/";
 
   const methods = (get("routes.home.ui.methods") as HomeMethod[] | undefined) ?? [];
   const badges = (get("routes.home.ui.badges") as string[] | undefined) ?? [];

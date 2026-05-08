@@ -1,26 +1,26 @@
 import { jsx, jsxs, Fragment } from "react/jsx-runtime";
 import { H as Helmet } from "./vendor-BMz5C6pv.js";
 import { useParams, Navigate, Link } from "react-router-dom";
-import { g as getAssessmentById, a as assessments } from "./iq-test-page-BIOHOohz.js";
-import { u as useI18n, h as homeStyles } from "./home-Hplm1lpP.js";
-const wrapper = "_wrapper_tklek_1";
-const header = "_header_tklek_5";
-const title = "_title_tklek_9";
-const emoji = "_emoji_tklek_15";
-const subtitle = "_subtitle_tklek_19";
-const card = "_card_tklek_25";
-const cardTitle = "_cardTitle_tklek_34";
-const cardText = "_cardText_tklek_39";
-const primaryLink = "_primaryLink_tklek_44";
-const disabledBtn = "_disabledBtn_tklek_54";
-const linksRow = "_linksRow_tklek_64";
-const secondaryLink = "_secondaryLink_tklek_72";
-const section = "_section_tklek_78";
-const sectionTitle = "_sectionTitle_tklek_87";
-const grid = "_grid_tklek_91";
-const gridCard = "_gridCard_tklek_97";
-const gridTitle = "_gridTitle_tklek_107";
-const gridDesc = "_gridDesc_tklek_112";
+import { g as getAssessmentById, a as assessments } from "./iq-test-page-BlpRRthJ.js";
+import { u as useI18n, h as homeStyles } from "./home-CRIP7go1.js";
+const wrapper = "_wrapper_12ouq_1";
+const header = "_header_12ouq_9";
+const title = "_title_12ouq_17";
+const emoji = "_emoji_12ouq_29";
+const subtitle = "_subtitle_12ouq_37";
+const card = "_card_12ouq_49";
+const cardTitle = "_cardTitle_12ouq_67";
+const cardText = "_cardText_12ouq_77";
+const primaryLink = "_primaryLink_12ouq_87";
+const disabledBtn = "_disabledBtn_12ouq_107";
+const linksRow = "_linksRow_12ouq_127";
+const secondaryLink = "_secondaryLink_12ouq_143";
+const section = "_section_12ouq_155";
+const sectionTitle = "_sectionTitle_12ouq_173";
+const grid = "_grid_12ouq_181";
+const gridCard = "_gridCard_12ouq_193";
+const gridTitle = "_gridTitle_12ouq_213";
+const gridDesc = "_gridDesc_12ouq_223";
 const styles = {
   wrapper,
   header,

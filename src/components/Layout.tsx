@@ -32,19 +32,22 @@ export default function Layout() {
     }
   }, [theme]);
 
-  const { canonicalHref, origin } = useMemo(() => {
-    const path = location.pathname === "/" ? "" : location.pathname;
+  const { canonicalHref, origin, basePrefix } = useMemo(() => {
+    const path = location.pathname === "/" ? "/" : location.pathname;
     const configuredSiteUrl = (import.meta.env.VITE_SITE_URL || (globalThis as any).__SITE_URL__ || "")
       .trim()
       .replace(/\/+$/, "");
     const computedOrigin =
       configuredSiteUrl !== "" ? configuredSiteUrl : typeof window !== "undefined" ? window.location.origin : "";
 
-    if (!computedOrigin) return { canonicalHref: null as string | null, origin: "" };
-    return { canonicalHref: `${computedOrigin}${path}`, origin: computedOrigin };
+    const baseUrl = import.meta.env.BASE_URL;
+    const computedBasePrefix = baseUrl.startsWith(".") || baseUrl === "/" ? "" : baseUrl.replace(/\/+$/, "");
+
+    if (!computedOrigin) return { canonicalHref: null as string | null, origin: "", basePrefix: "" };
+    return { canonicalHref: `${computedOrigin}${computedBasePrefix}${path}`, origin: computedOrigin, basePrefix: computedBasePrefix };
   }, [location.pathname]);
 
-  const ogImage = origin ? `${origin}/og-image.svg` : "/og-image.svg";
+  const ogImage = origin ? `${origin}${basePrefix}/og-image.svg` : "/og-image.svg";
 
   return (
     <>

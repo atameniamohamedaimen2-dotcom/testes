@@ -7,6 +7,15 @@ function normalizeSiteUrl(url) {
   return trimmed.endsWith("/") ? trimmed.slice(0, -1) : trimmed;
 }
 
+function normalizeViteBase(value) {
+  const raw = String(value ?? "").trim();
+  if (!raw || raw === "/") return "/";
+  if (/^https?:\/\//i.test(raw)) return raw.endsWith("/") ? raw : `${raw}/`;
+  if (raw.startsWith("./") || raw.startsWith("../")) return raw.endsWith("/") ? raw : `${raw}/`;
+  const withLeadingSlash = raw.startsWith("/") ? raw : `/${raw}`;
+  return withLeadingSlash.endsWith("/") ? withLeadingSlash : `${withLeadingSlash}/`;
+}
+
 function getSiteUrl() {
   return (
     normalizeSiteUrl(process.env.SITE_URL) ||
@@ -14,6 +23,12 @@ function getSiteUrl() {
     normalizeSiteUrl(process.env.PUBLIC_SITE_URL) ||
     "https://personacheck.pro"
   );
+}
+
+function getBasePrefix() {
+  const base = normalizeViteBase(process.env.VITE_BASE_PATH || "");
+  if (base.startsWith(".") || base === "/") return "";
+  return base.replace(/\/+$/, "");
 }
 
 function getAssessmentIds(projectRoot) {
@@ -27,13 +42,13 @@ function getAssessmentIds(projectRoot) {
   return [...ids];
 }
 
-function buildSitemapXml({ siteUrl, urls, lastmod }) {
+function buildSitemapXml({ siteUrl, basePrefix, urls, lastmod }) {
   const lines = [];
   lines.push('<?xml version="1.0" encoding="UTF-8"?>');
   lines.push('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">');
   for (const u of urls) {
     lines.push("  <url>");
-    lines.push(`    <loc>${siteUrl}${u}</loc>`);
+    lines.push(`    <loc>${siteUrl}${basePrefix}${u}</loc>`);
     lines.push(`    <lastmod>${lastmod}</lastmod>`);
     lines.push("  </url>");
   }
@@ -41,11 +56,11 @@ function buildSitemapXml({ siteUrl, urls, lastmod }) {
   return `${lines.join("\n")}\n`;
 }
 
-function buildRobotsTxt({ siteUrl }) {
+function buildRobotsTxt({ siteUrl, basePrefix }) {
   return `User-agent: *
 Allow: /
 
-Sitemap: ${siteUrl}/sitemap.xml
+Sitemap: ${siteUrl}${basePrefix}/sitemap.xml
 `;
 }
 
@@ -58,6 +73,7 @@ function main() {
   const publicDir = path.join(projectRoot, "public");
 
   const siteUrl = getSiteUrl();
+  const basePrefix = getBasePrefix();
   const ids = getAssessmentIds(projectRoot).filter((id) => id !== "iq");
 
   const urls = ["/", "/test", "/assessments", ...ids.map((id) => `/assessments/${id}`), ...ids.map((id) => `/assessments/${id}/test`)];
@@ -65,8 +81,8 @@ function main() {
   const today = new Date();
   const lastmod = today.toISOString().slice(0, 10);
 
-  const sitemapXml = buildSitemapXml({ siteUrl, urls, lastmod });
-  const robotsTxt = buildRobotsTxt({ siteUrl });
+  const sitemapXml = buildSitemapXml({ siteUrl, basePrefix, urls, lastmod });
+  const robotsTxt = buildRobotsTxt({ siteUrl, basePrefix });
 
   fs.writeFileSync(path.join(distDir, "sitemap.xml"), sitemapXml, "utf8");
   fs.writeFileSync(path.join(distDir, "robots.txt"), robotsTxt, "utf8");

@@ -1,9 +1,9 @@
 import { jsxs, Fragment, jsx } from "react/jsx-runtime";
 import { H as Helmet } from "./vendor-BMz5C6pv.js";
 import { Link } from "react-router-dom";
-import { a as assessments } from "./iq-test-page-BIOHOohz.js";
-import { s as styles } from "./assessment-info-Cp84TyZc.js";
-import { u as useI18n } from "./home-Hplm1lpP.js";
+import { a as assessments } from "./iq-test-page-BlpRRthJ.js";
+import { s as styles } from "./assessment-info-KTtZO9--.js";
+import { u as useI18n } from "./home-CRIP7go1.js";
 function AssessmentsPage() {
   const { t } = useI18n();
   const title = t("routes.assessments.helmet.title");
@@ -24,7 +24,7 @@ function AssessmentsPage() {
       ] }),
       /* @__PURE__ */ jsxs("div", { className: styles.section, children: [
         /* @__PURE__ */ jsx("h2", { className: styles.sectionTitle, children: t("routes.assessments.ui.chooseTitle") }),
-        /* @__PURE__ */ jsx("div", { className: styles.grid, children: assessments.map((a) => /* @__PURE__ */ jsxs(Link, { to: `/assessments/${a.id}`, className: styles.gridCard, children: [
+        /* @__PURE__ */ jsx("div", { className: styles.grid, children: assessments.map((a) => /* @__PURE__ */ jsxs(Link, { to: a.id === "iq" ? "/" : `/assessments/${a.id}`, className: styles.gridCard, children: [
           /* @__PURE__ */ jsxs("div", { className: styles.gridTitle, children: [
             /* @__PURE__ */ jsx("span", { "aria-hidden": "true", children: a.emoji }),
             " ",
